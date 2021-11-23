@@ -1,0 +1,47 @@
+<h2>{{viewTitle}}</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <a href="/employee" class="btn btn-primary" style="float:left;">
+      <i class="fa fa-plus"></i>
+      NEW EMPLOYEE</a>
+  </div>
+</div>
+<div class="row table-responsive bg-light">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Phone</td>
+        <td>Email</td>
+        <td>City</td>
+        <td>Edit</td>
+        <td>Delete</td>
+      </tr>
+    </thead>
+    <tbody>
+
+      {{#each list}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.phone}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.city}}</td>
+          <td>
+
+            <a href="/employee/{{this._id}}"><i
+                class="fa fa-pencil fa-lg"
+              ></i></a>
+          </td>
+          <td>
+            <a
+              href="/employee/delete/{{this._id}}"
+              onclick="return confirm('do you like delete this record?')"
+            ><i class="fa fa-trash fa-lg"></i></a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,33 @@
+---------------- Error----------------
+ Handlebars: Access has been denied to resolve the property "name" because it is not an "own property" of its parent.
+You can add a runtime option to disable the check or this warning:
+See https://handlebarsjs.com/api-reference/runtime-options.html#options-to-control-prototype-access for details
+Handlebars: Access has been denied to resolve the property "phone" because it is not an "own property" of its parent.
+You can add a runtime option to disable the check or this warning:
+See https://handlebarsjs.com/api-reference/runtime-options.html#options-to-control-prototype-access for details
+Handlebars: Access has been denied to resolve the property "email" because it is not an "own property" of its parent.
+You can add a runtime option to disable the check or this warning:
+
+---------------- solution ----------------
+
+1- Install-Module
+
+npm install @handlebars/allow-prototype-access
+
+2- importing package
+
+const Handlebars = require('handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype- 
+access')
+
+3- Set View Engine, add (handlebars: allowInsecurePrototypeAccess(Handlebars)))
+
+app.engine(
+  "hbs",
+  expHbs({
+    extname: "hbs",
+    defaultLayout: "mainlayout",
+    layoutsDir: __dirname + "/views/layouts/",
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+  })
+);
