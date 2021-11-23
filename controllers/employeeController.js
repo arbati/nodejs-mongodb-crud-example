@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
   console.log("method get");
 });
 
-// add or update record
+// add or update employee
 router.post("/", (req, res) => {
   if (req.body._id == "") {
     store(req, res);
@@ -20,7 +20,7 @@ router.post("/", (req, res) => {
   }
 });
 
-//get list of all record
+//list of all employee
 router.get("/list", (req, res) => {
   Employee.find((err, docs) => {
     if (!err) {
@@ -34,10 +34,9 @@ router.get("/list", (req, res) => {
   });
 });
 
-//get list of all record
+//find employee by id
 router.get("/:id", (req, res) => {
-  console.log(req.params.id);
-
+  
   Employee.findById(req.params.id, (err, docs) => {
     if (!err) {
       res.render("employee/addOrUpdate.hbs", {
@@ -50,7 +49,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-//get list of all record
+//delete employee by id
 router.get("/delete/:id", (req, res) => {
   Employee.findByIdAndRemove(req.params.id, (err, docs) => {
     if (!err) {
@@ -87,7 +86,7 @@ function store(req, res) {
   });
 }
 
-//todo
+//update employee
 function update(req, res) {
   var employee = new Employee();
   employee._id = req.body.id;
@@ -119,7 +118,7 @@ function update(req, res) {
   );
 }
 
-//validation function
+//validation form
 function handelValidationError(err, body) {
   for (field in err.errors) {
     switch (err.errors[field].path) {
